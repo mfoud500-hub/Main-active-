@@ -14,8 +14,10 @@ jobs:
 
       - name: Unzip project
         run: |
+          ZIP=$(find . -name '*.zip' -not -path './.git/*' | head -n 1)
+          echo "Using: $ZIP"
           mkdir -p proj
-          unzip -o project.zip -d proj
+          unzip -o "$ZIP" -d proj
 
       - name: Set up JDK 17
         uses: actions/setup-java@v4
